@@ -36,4 +36,46 @@
     </body>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    async function handleDeleteProduct(productId, productName) {
+
+  const result = await Swal.fire({
+  title: "Are you sure?",
+  text: `You will be deleting the product ${productName}`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#F68A21",
+  cancelButtonColor: "#0F172A",
+  confirmButtonText: "Yes, delete it!"
+})
+  if (result.isConfirmed) {
+    const response = await fetch(`/product/delete/${productId}`, {
+        method: 'DELETE',
+        headers: {
+         'X-CSRF-TOKEN': '{{ csrf_token() }}',
+         'Content-Type': 'application/json',
+       },
+    });
+    const data = await response.json();
+    await Swal.fire({
+      title: "Deleted!",
+      text: data.message,
+      icon: "success"
+    });
+    window.location.reload();
+
+  }
+    }
+
+async function handleModalPopUp() {
+    Swal.fire({
+  title: "Good job!",
+  text: "You updated the product successfully",
+  icon: "success"
+});
+}
+
+
+</script>
 </html>

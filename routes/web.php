@@ -21,9 +21,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard', [ProductController::class, 'index'])->name('dashboard');
     Route::get('product/create', [ProductController::class, 'product_form'])->name('product.create');
-    Route::patch('product/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('product/edit/{productId}', [ProductController::class, 'edit_product_form'])->name('product.edit');
+    Route::patch('product/edit/{productId}', [ProductController::class, 'edit_product_details'])->name('product.edit');
     Route::post('product/store', [ProductController::class, 'store_product'])->name('product.store');
-    Route::delete('product/delete', [ProductController::class, 'destroy_product'])->name('product.destroy');
+    Route::delete('product/delete/{productId}', [ProductController::class, 'destroy_product'])->name('product.destroy');
 });
 
 require __DIR__.'/auth.php';

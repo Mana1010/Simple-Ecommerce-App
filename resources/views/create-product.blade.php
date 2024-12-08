@@ -7,7 +7,7 @@
                 ADD A PRODUCT
             </h2></div>
     </header>
-        <form  method="POST" action="{{route('product.store')}}" class="w-full shadow pt-7 px-3 flex flex-col space-y-5 py-6">
+        <form  method="POST" action="{{route('product.store', ['category' => 'all'])}}" class="w-full shadow pt-7 px-3 flex flex-col space-y-5 py-6">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-3 w-full">
                 <div class="flex flex-col space-y-1 sm:col-span-1 md:col-span-2">
@@ -17,14 +17,14 @@
                 <div class="flex flex-col space-y-1 col-span-1">
                     <label for="category" class="text-sm font-bold text-slate-900">Category</label>
                     <select id="category" name="category" class="p-2 rounded-sm border border-black/10 focus:border-[#F68A21] focus:ring-0">
-                        <option value="food">Foods</option>
-                        <option value="electronic">Electronics</option>
+                        <option value="foods">Foods</option>
+                        <option value="electronics">Electronics</option>
                         <option value="beauty">Beauty</option>
-                        <option value="cloth">Clothes</option>
+                        <option value="clothes">Clothes</option>
                         <option value="home">Home</option>
-                        <option value="toy">Toys</option>
-                        <option value="book">Books</option>
-                        <option value="took">Tools</option>
+                        <option value="toys">Toys</option>
+                        <option value="books">Books</option>
+                        <option value="tools">Tools</option>
                         <option value="jewelry">Jewelry</option>
                     </select>
                 </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="flex justify-between md:flex-row flex-col-reverse space-y-2 md:space-y-0">
-                <a href="{{route('dashboard')}}" class="md:w-[20%] w-full py-2 rounded-sm bg-zinc-700 text-white font-bold text-center mt-2 md:mt-0">GO BACK</a>
+                <a href="{{route('dashboard', ['category' => 'all'])}}" class="md:w-[20%] w-full py-2 rounded-sm bg-zinc-700 text-white font-bold text-center mt-2 md:mt-0">GO BACK</a>
             <button type="submit" class="md:w-[20%] w-full py-2 rounded-sm bg-[#F68A21] text-white font-bold ">CREATE PRODUCT</button>
         </div>
         </form>
