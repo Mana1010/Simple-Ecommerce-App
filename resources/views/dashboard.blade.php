@@ -7,10 +7,14 @@
         <h2 class="font-extrabold text-slate-900 text-3xl">
             YOUR PRODUCT
         </h2>
-        <div class=" flex items-center gap-1">
-        @foreach ($categoryListTotal as $categoryProduct)
-            <div class="p-2 rounded-sm border border-zinc-300 space-x-2">
-
+        <div class=" grid md:grid-cols-10 grid-cols-5 items-center gap-1">
+        @php
+            $iconList = ["grid", "fast-food", "shirt", "brush", "desktop", "file-tray-stacked", "basketball", "book", "construct", "sparkles"]
+        @endphp
+        @foreach ($categoryListTotal as $key => $categoryProduct)
+            <div class="p-2 rounded-sm border border-zinc-300 space-x-1 text-sm flex items-center">
+                <span class="text-[#F68A21]  flex items-center justify-center"><ion-icon name="{{$iconList[$key]}}-sharp"></ion-icon></span>
+                <span class="flex items-center font-semibold text-slate-900">{{$categoryProduct}}</span>
             </div>
         @endforeach
     </div>
@@ -22,42 +26,47 @@
         </a>
     </header>
     </x-slot>
-    <div class="grid grid-cols-9 items-center pl-2 pb-3 ">
+    <div class="grid grid-cols-10 items-center pl-2 pb-3 ">
+        <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
+            <span class="flex items-center justify-center"><ion-icon name="grid-sharp"></ion-icon></span>
+            <span class="xl:flex hidden">ALL</span>
+                </button>
 <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
 <span class="flex items-center justify-center "> <ion-icon name="fast-food-sharp"></ion-icon></span>
-<span class="lg:flex hidden">FOODS</span>
+<span class="xl:flex hidden">FOODS</span>
     </button>
+
     <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
         <span class="flex items-center justify-center"><ion-icon name="shirt-sharp"></ion-icon></span>
-        <span class="lg:flex hidden">CLOTHES</span>
+        <span class="xl:flex hidden">CLOTHES</span>
             </button>
             <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                 <span class="flex items-center justify-center"><ion-icon name="brush-sharp"></ion-icon></span>
-                <span class="lg:flex hidden">BEAUTY</span>
+                <span class="xl:flex hidden">BEAUTY</span>
                     </button>
                     <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                         <span class="flex items-center justify-center"><ion-icon name="desktop-sharp"></ion-icon></span>
-                        <span class="lg:flex hidden">ELECTRONICS</span>
+                        <span class="xl:flex hidden">ELECTRONICS</span>
                             </button>
                             <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                                 <span class="flex items-center justify-center"><ion-icon name="file-tray-stacked-sharp"></ion-icon></span>
-                                <span class="lg:flex hidden">HOME</span>
+                                <span class="xl:flex hidden">HOME</span>
                                     </button>
                                     <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                                         <span class="flex items-center justify-center"><ion-icon name="basketball-sharp"></ion-icon></span>
-                                        <span class="lg:flex hidden">TOYS</span>
+                                        <span class="xl:flex hidden">TOYS</span>
                                             </button>
                                             <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                                                 <span class="flex items-center justify-center"><ion-icon name="book-sharp"></ion-icon></span>
-                                                <span class="lg:flex hidden">BOOKS</span>
+                                                <span class="xl:flex hidden">BOOKS</span>
                                                     </button>
                                                     <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                                                         <span class="flex items-center justify-center"><ion-icon name="construct-sharp"></ion-icon></span>
-                                                        <span class="lg:flex hidden">TOOLS</span>
+                                                        <span class="xl:flex hidden">TOOLS</span>
                                                             </button>
                                                             <button class="flex items-center justify-center w-full text-sm font-bold space-x-1 text-slate-900 hover:text-[#F68A21] p-2 transition-colors duration-100 ease-in-out">
                                                                 <span class="flex items-center justify-center"><ion-icon name="sparkles-sharp"></ion-icon></span>
-                                                                <span class="lg:flex hidden">JEWELRY</span>
+                                                                <span class="xl:flex hidden">JEWELRY</span>
                                                                     </button>
     </div>
 
@@ -87,6 +96,9 @@
                 case 'beauty':
                 $category = 'brush';
                 break;
+                case 'electronic':
+                $category = 'desktop';
+                break;
                 case 'home':
                 $category = 'file-tray-stacked';
                 break;
@@ -110,7 +122,7 @@
 
             <div class="h-[410px] shadow px-3 py-2.5 flex items-center flex-col relative justify-center space-y-1 break-all">
                 <div class="w-full flex justify-end">
-                <small class="text-slate-900 text-[0.65rem] font-semibold">PRODUCT ID: {{$key + 1}}</small>
+                <small class="text-slate-900 text-[0.65rem] font-semibold">PRODUCT ID: {{$product->id}}</small>
             </div>
                 <h1 class=" font-semibold text-xl break-words text-center text-[#F68A21]">{{$product->product_name}}</h1>
                 <span class="text-lg p-2 rounded-full w-10 h-10 flex items-center justify-center bg-[#F68A21] text-white absolute -top-4 -left-4"><ion-icon name="{{ $category }}-sharp"></ion-icon></span>

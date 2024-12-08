@@ -12,13 +12,19 @@ class ProductController extends Controller
         $totalFoodProduct = Product::where('category', 'food')->count();
         $totalClothesProduct = Product::where('category', 'cloth')->count();
         $totalBeautyProduct = Product::where('category', 'beauty')->count();
+        $totalElectronicsProduct = Product::where('category', 'electronic')->count();
         $totalHomeProduct = Product::where('category', 'home')->count();
         $totalToysProduct = Product::where('category', 'toy')->count();
         $totalBooksProduct = Product::where('category', 'book')->count();
         $totalToolProduct = Product::where('category', 'tool')->count();
         $totalJewelryProduct = Product::where('category', 'jewelry')->count();
 
-        $categoryListTotal = [$totalProduct, $totalFoodProduct, $totalClothesProduct];
+        $categoryListTotal = [$totalProduct,
+        $totalFoodProduct, $totalClothesProduct,
+        $totalBeautyProduct, $totalElectronicsProduct, $totalHomeProduct,
+        $totalToysProduct, $totalBooksProduct,$totalToolProduct,
+        $totalJewelryProduct,
+    ];
         return view('dashboard', compact(
         'products',
         'totalProduct',
@@ -46,7 +52,7 @@ class ProductController extends Controller
 
     public function destroy_product(Product $product) {
 
-        $student->delete();
+        $product->delete();
         return redirect()->route('dashboard')->with('success', 'Product removed successfully');
     }
 }
